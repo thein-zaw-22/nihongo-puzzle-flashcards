@@ -126,7 +126,6 @@ function FlashcardsScreen() {
             <Text style={styles.resetText}>🔄 Reset to First Card</Text>
           </Pressable>
         )}
-      </View>
     </View>
   );
 }
