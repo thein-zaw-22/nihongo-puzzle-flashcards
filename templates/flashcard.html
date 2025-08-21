@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Japanese Flashcards</h1>
         <div class="flashcard-instructions">
-            <span class="flip-icon" aria-hidden="true">🔄</span> Click or press <kbd>Space</kbd>/<kbd>Enter</kbd> to flip the card
+            <span class="flip-icon" aria-hidden="true">🔄</span> Click or press <kbd>Space</kbd>/<kbd>Enter</kbd> to flip the card &nbsp;|&nbsp; <kbd>←</kbd>/<kbd>→</kbd> for Previous/Next
         </div>
         <div class="progress-container">
             <div class="progress-bar">
@@ -23,7 +23,7 @@
         </div>
         <div class="flashcard-study-area">
             <div class="flashcard-container">
-                <div class="flashcard" tabindex="0" aria-label="Flashcard. Press space or enter to flip."
+                <div class="flashcard" id="flashcard" tabindex="0" aria-label="Flashcard. Press space or enter to flip."
                     onclick="this.classList.toggle('is-flipped')"
                     onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.classList.toggle('is-flipped');}">
                     <div class="flashcard-front">
@@ -37,12 +37,35 @@
                 </div>
             </div>
             <div class="flashcard-controls">
-                <form method="post" style="display: inline;">
-                    <button class="control-btn" name="prev" value="1" {% if current_index == 0 %}disabled{% endif %}>← Previous</button>
+                <form method="post" id="prevForm" style="display: inline;">
+                    <button class="control-btn" id="prevBtn" name="prev" value="1" {% if current_index == 0 %}disabled{% endif %}>← Previous</button>
                 </form>
-                <form method="post" style="display: inline;">
-                    <button class="control-btn" name="next" value="1" {% if current_index == total_cards - 1 %}disabled{% endif %}>Next →</button>
+                <form method="post" id="nextForm" style="display: inline;">
+                    <button class="control-btn" id="nextBtn" name="next" value="1" {% if current_index == total_cards - 1 %}disabled{% endif %}>Next →</button>
                 </form>
+    <script>
+    // Keyboard navigation for flashcards
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashcard = document.getElementById('flashcard');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevForm = document.getElementById('prevForm');
+        const nextForm = document.getElementById('nextForm');
+        document.addEventListener('keydown', function(e) {
+            if (document.activeElement === flashcard) {
+                // Already handled by onkeydown on flashcard
+                return;
+            }
+            if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) {
+                e.preventDefault();
+                prevForm.submit();
+            } else if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) {
+                e.preventDefault();
+                nextForm.submit();
+            }
+        });
+    });
+    </script>
             </div>
             {% if current_index + 1 == total_cards %}
                 <div class="completion-message">🎉 You've reached the last card! Review again or go back to menu.</div>

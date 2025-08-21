@@ -1,9 +1,11 @@
 
 from flask import Flask, render_template, request, session, redirect, url_for
+import os
 import random
 
 app = Flask(__name__)
-app.secret_key = 'demo-secret-key'  # For session management
+# Secret key: read from environment for non-dev usage, fallback for dev
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-insecure-secret-key')
 
 # Import puzzle data from data.py
 from data import PUZZLES, FLASHCARDS

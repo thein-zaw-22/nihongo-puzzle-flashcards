@@ -380,9 +380,15 @@ body {
     height: 100%;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+    transition: transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
     outline: none;
-    /* box-shadow removed for cleaner look */
+    background: #f8fbff;
+    border-radius: 15px;
+}
+.flashcard:hover, .flashcard:focus {
+    box-shadow: 0 0 0 4px #b2ebf2;
+    background: #f0faff;
+}
 }
 .flashcard:focus {
     box-shadow: 1px 1px 1px 1px #74ebd5;
@@ -423,8 +429,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-top: 60px;  /* Increased space between card and controls */
+    gap: 24px;
+    margin-top: 48px;
 }
 
 .control-btn {
