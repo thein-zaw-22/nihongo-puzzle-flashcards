@@ -1,0 +1,7 @@
+{% macro nav_menu(active_page) %}
+<nav class="nav-menu">
+    <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">Home</a>
+    <a href="{{ url_for('puzzle') }}" class="nav-link {% if active_page == 'puzzle' %}active{% endif %}">Puzzle Quiz</a>
+    <a href="{{ url_for('flashcard') }}" class="nav-link {% if active_page == 'flashcard' %}active{% endif %}">Flashcards</a>
+</nav>
+{% endmacro %}

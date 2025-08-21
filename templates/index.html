@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Puzzle Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    {% from 'nav.html' import nav_menu %}
+    {{ nav_menu('puzzle') }}
+    <div class="container">
+        <h1>Japanese Puzzle Game</h1>
+        <!-- Progress information -->
+        <div class="progress-info">
+            <div class="position-text">Question {{ progress.position }} of {{ progress.total }}</div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ progress.percent|round }}%;"></div>
+                </div>
+                <div class="progress-text">Completed: {{ progress.current }}/{{ progress.total }}</div>
+            </div>
+        </div>
+        <div class="puzzle-question">{{ puzzle.question }}</div>
+        <form method="post" class="puzzle-form">
+            <!-- Choice buttons -->
+            <div class="choices-grid">
+                {% for choice in puzzle.choices %}
+                    <button 
+                        type="submit"
+                        name="choice"
+                        value="{{ loop.index0 }}"
+                        class="choice-btn{% if answered %} {% if loop.index0 == puzzle.answer %} correct{% endif %}{% if loop.index0 == selected_choice and not result %} incorrect{% endif %}{% endif %}"
+                        {% if answered %}disabled{% endif %}
+                    >
+                        {{ choice }}
+                    </button>
+                {% endfor %}
+            </div>
+            <!-- Result message -->
+            {% if answered %}
+                <div class="result-message {{ 'success' if result else 'error' }}">
+                    {% if result %}
+                        <span>✨ Correct! ✨</span>
+                    {% else %}
+                        <span>Incorrect</span>
+                    {% endif %}
+                </div>
+                <!-- Action buttons -->
+                <div class="action-buttons">
+                    {% if result %}
+                        {% if is_last_puzzle or all_completed %}
+                            <button class="start-over-btn" name="reset" value="1" type="submit">
+                                🎉 Start Over 🎉
+                            </button>
+                            <div class="completion-message">Congratulations! You completed all puzzles!</div>
+                        {% else %}
+                            <button class="next-btn" name="next" value="1" type="submit">
+                                Next Puzzle →
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <button class="btn-secondary" name="tryagain" value="1" type="submit">
+                            ↺ Try Again
+                        </button>
+                        {% if is_last_puzzle or all_completed %}
+                            <button class="start-over-btn" name="reset" value="1" type="submit">
+                                🎉 Start Over 🎉
+                            </button>
+                        {% elif not is_last_puzzle %}
+                            <button class="btn-secondary skip" name="next" value="1" type="submit">
+                                Skip →
+                            </button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+    <script>
+        function fireConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'],
+                zIndex: 9999
+            });
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ff99ff']
+                });
+                confetti({
+                    particleCount: 50,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ff99ff']
+                });
+            }, 150);
+        }
+        {% if is_new_correct %}
+        document.addEventListener('DOMContentLoaded', fireConfetti);
+        {% endif %}
+    </script>
+</body>
+</html>
+

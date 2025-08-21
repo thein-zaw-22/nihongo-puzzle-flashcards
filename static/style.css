@@ -1,0 +1,575 @@
+/* Flashcard instructions and flip icon */
+.flashcard-instructions {
+    text-align: center;
+    color: #3a7bd5;
+    font-size: 1.05rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.flip-icon {
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+.flashcard-content {
+    display: block;
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin-bottom: 0.2em;
+}
+.flip-hint {
+    display: block;
+    font-size: 1.1rem;
+    color: #b0bec5;
+    margin-top: 0.5em;
+}
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #74ebd5 0%, #ACB6E5 100%);
+    min-height: 100vh;
+}
+
+.menu-container {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.menu-title {
+    color: #2d3a4b;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.menu-btn {
+    background: #f8fbff;
+    color: #3a7bd5;
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.menu-btn::before {
+    content: '✨';
+    position: absolute;
+    left: 20px;
+}
+
+.menu-btn::after {
+    content: '✨';
+    position: absolute;
+    right: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 60px auto;
+    background: #f8fbff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 32px 28px 24px 28px;
+    text-align: center;
+}
+
+h1 {
+    color: #3a7bd5;
+    margin-bottom: 18px;
+}
+
+.puzzle {
+    font-size: 1.3rem;
+    margin: 24px 0 18px 0;
+    color: #2d3a4b;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress information */
+.progress-info {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.position-text {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.progress-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Puzzle section */
+.puzzle-section {
+    text-align: center;
+}
+
+.puzzle-question {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Choices grid */
+.choices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+}
+
+.choice-btn {
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.choice-btn:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.choice-btn.correct {
+    background-color: #4CAF50;
+    border-color: #45a049;
+    color: white;
+}
+
+.choice-btn.incorrect {
+    background-color: #ff5252;
+    border-color: #ff1744;
+    color: white;
+}
+
+.choice-btn.selected {
+    transform: scale(0.98);
+}
+
+.choice-btn[disabled] {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Result message */
+.result-message {
+    margin: 1.5rem 0 0.5rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    letter-spacing: 0.5px;
+}
+
+.result-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1.5px solid #81c784;
+}
+
+.result-message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1.5px solid #ef9a9a;
+}
+
+.completion-message {
+    margin: 1.5rem 0 0.5rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background: #fffde7;
+    color: #ff9800;
+    border: 1.5px solid #ffe082;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #ff7043; /* deep orange for Try Again */
+    color: #fff;
+    border: none;
+}
+.btn-secondary.skip {
+    background-color: #29b6f6; /* light blue for Skip */
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #d84315;
+    transform: translateY(-2px);
+}
+.btn-secondary.skip:hover {
+    background-color: #0288d1;
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-message, .action-buttons {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.result {
+    margin-top: 18px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.next-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #45a049;
+}
+
+.start-over-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.start-over-btn:hover {
+    background-color: #f57c00;
+}
+
+/* Flashcard Styles */
+.flashcard-study-area {
+    margin: 20px auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flashcard-container {
+    perspective: 1000px;
+    width: 300px;
+    height: 200px;
+    margin: 20px 0;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+
+.flashcard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+    outline: none;
+    /* box-shadow removed for cleaner look */
+}
+.flashcard:focus {
+    box-shadow: 1px 1px 1px 1px #74ebd5;
+}
+
+.flashcard.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border-radius: 15px;
+    /* box-shadow removed for minimal look */
+}
+
+.flashcard-front {
+    background: #f8fbff;
+    color: #3a7bd5;
+    border: none;
+}
+
+.flashcard-back {
+    background: #74ebd5;
+    color: #2d3a4b;
+    transform: rotateY(180deg);
+    border: none;
+}
+
+.flashcard-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 60px;  /* Increased space between card and controls */
+}
+
+.control-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: #5f9ea0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.control-btn:hover:not(:disabled) {
+    background: #3a7bd5;
+    transform: translateY(-2px);
+}
+
+.control-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 25px;
+    background: #f8fbff;
+    color: #3a7bd5;
+    border: 2px solid #3a7bd5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+    background: #3a7bd5;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-btn {
+    background: #5f9ea0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.control-btn:hover {
+    background: #3a7bd5;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px auto;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #74ebd5;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    color: #2d3a4b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.reset-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.reset-btn {
+    background: #3a7bd5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #2d3a4b;
+    transform: translateY(-2px);
+}
+
+.card-count {
+    text-align: center;
+    color: #2d3a4b;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #f8fbff;
+    padding: 12px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.nav-link {
+    color: #3a7bd5;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background: #74ebd5;
+    color: #2d3a4b;
+}
+
+.nav-link.active {
+    background: #3a7bd5;
+    color: #fff;
+}
+
+body {
+    padding-top: 60px;  /* Space for fixed nav */
+}

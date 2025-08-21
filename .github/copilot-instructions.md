@@ -1,0 +1,14 @@
+- [x] Verify that the copilot-instructions.md file in the .github directory is created.
+
+- [x] Clarify Project Requirements
+	- Project type: Flask web app (Python). Requirements: Hello World at root endpoint, requirements.txt, README.md.
+- [x] Scaffold the Project
+	- Created app.py, requirements.txt, and .venv for Flask project in current directory.
+- [ ] Customize the Project
+- [ ] Install Required Extensions
+- [x] Compile the Project
+	- Installed dependencies from requirements.txt (Flask).
+- [x] Create and Run Task
+	- Created and ran a VS Code task to launch the Flask app using the virtual environment.
+- [ ] Launch the Project
+- [ ] Ensure Documentation is Complete

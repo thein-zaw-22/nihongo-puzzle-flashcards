@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% from 'nav.html' import nav_menu %}
+    {{ nav_menu('home') }}
+    <div class="menu-container">
+        <h1 class="menu-title">Japanese Learning ✨</h1>
+        <div class="menu-buttons">
+            <a href="{{ url_for('puzzle') }}" class="menu-btn">
+                Puzzle Quiz Game
+            </a>
+            <a href="{{ url_for('flashcard') }}" class="menu-btn">
+                Flashcards
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Flashcards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% from 'nav.html' import nav_menu %}
+    {{ nav_menu('flashcard') }}
+    
+    <div class="container">
+        <h1>Japanese Flashcards</h1>
+        <div class="flashcard-instructions">
+            <span class="flip-icon" aria-hidden="true">🔄</span> Click or press <kbd>Space</kbd>/<kbd>Enter</kbd> to flip the card
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ ((current_index + 1) / total_cards * 100) | round }}%;"></div>
+            </div>
+            <div class="progress-text">Card {{ current_index + 1 }} of {{ total_cards }}</div>
+        </div>
+        <div class="flashcard-study-area">
+            <div class="flashcard-container">
+                <div class="flashcard" tabindex="0" aria-label="Flashcard. Press space or enter to flip."
+                    onclick="this.classList.toggle('is-flipped')"
+                    onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();this.classList.toggle('is-flipped');}">
+                    <div class="flashcard-front">
+                        <span class="flashcard-content">{{ card.front }}</span>
+                        <span class="flip-hint">🔄</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <span class="flashcard-content">{{ card.back }}</span>
+                        <span class="flip-hint">🔄</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-controls">
+                <form method="post" style="display: inline;">
+                    <button class="control-btn" name="prev" value="1" {% if current_index == 0 %}disabled{% endif %}>← Previous</button>
+                </form>
+                <form method="post" style="display: inline;">
+                    <button class="control-btn" name="next" value="1" {% if current_index == total_cards - 1 %}disabled{% endif %}>Next →</button>
+                </form>
+            </div>
+            {% if current_index + 1 == total_cards %}
+                <div class="completion-message">🎉 You've reached the last card! Review again or go back to menu.</div>
+                <form method="post" style="margin-top: 1rem;">
+                    <button class="reset-btn" name="reset" value="1" type="submit">🔄 Reset to First Card</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
