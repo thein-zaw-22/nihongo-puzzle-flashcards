@@ -30,12 +30,15 @@ App runs at http://127.0.0.1:5000/
 - Persistent quiz/flashcard state via Flask session
 - Confetti animation on correct quiz answers
 - Keyboard navigation on flashcards (←/→ to move, Space/Enter to flip)
+- Flashcards: Shuffle mode with one-click reshuffle
+- Puzzles: Review Incorrect mode with progress tracking
 
 ## Project Structure
 ```
 .
 ├── app.py            # Flask routes and game logic
 ├── data.py           # Quiz and flashcard datasets
+├── utils/            # Server-side helpers (e.g., PuzzleGame)
 ├── templates/        # Jinja2 templates (menu, quiz, flashcards, nav)
 ├── static/           # CSS and assets
 ├── requirements.txt  # Python dependencies

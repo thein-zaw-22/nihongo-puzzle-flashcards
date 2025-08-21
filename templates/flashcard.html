@@ -12,6 +12,19 @@
     
     <div class="container">
         <h1>Japanese Flashcards</h1>
+        <div class="flashcard-toolbar">
+            <form method="post" style="display:inline;">
+                <button class="btn-toggle" name="shuffle_toggle" value="1" type="submit">
+                    {% if shuffle %}Shuffle: On{% else %}Shuffle: Off{% endif %}
+                </button>
+            </form>
+            <form method="post" style="display:inline;">
+                <button class="btn-ghost" name="reshuffle" value="1" type="submit" {% if not shuffle %}disabled{% endif %}>
+                    Reshuffle
+                </button>
+            </form>
+            {% if shuffle %}<span class="mode-chip" title="Cards are in random order">Shuffled</span>{% endif %}
+        </div>
         <div class="flashcard-instructions">
             <span class="flip-icon" aria-hidden="true">🔄</span> Click or press <kbd>Space</kbd>/<kbd>Enter</kbd> to flip the card &nbsp;|&nbsp; <kbd>←</kbd>/<kbd>→</kbd> for Previous/Next
         </div>
@@ -44,7 +57,7 @@
                     <button class="control-btn" id="nextBtn" name="next" value="1" {% if current_index == total_cards - 1 %}disabled{% endif %}>Next →</button>
                 </form>
     <script>
-    // Keyboard navigation for flashcards
+    // Keyboard navigation + global flip for flashcards
     document.addEventListener('DOMContentLoaded', function() {
         const flashcard = document.getElementById('flashcard');
         const prevBtn = document.getElementById('prevBtn');
@@ -52,16 +65,30 @@
         const prevForm = document.getElementById('prevForm');
         const nextForm = document.getElementById('nextForm');
         document.addEventListener('keydown', function(e) {
-            if (document.activeElement === flashcard) {
-                // Already handled by onkeydown on flashcard
+            if (e.altKey || e.ctrlKey || e.metaKey) return;
+            // Global flip on Space/Enter unless in an interactive control
+            const inInteractive = e.target && (e.target.closest && e.target.closest('button, a, input, textarea, select, [contenteditable="true"]'));
+            if ((e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') && !inInteractive) {
+                e.preventDefault();
+                if (flashcard) {
+                    flashcard.classList.toggle('is-flipped');
+                }
                 return;
             }
             if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) {
                 e.preventDefault();
-                prevForm.submit();
+                if (prevForm.requestSubmit) {
+                    prevForm.requestSubmit(prevBtn);
+                } else {
+                    prevBtn.click();
+                }
             } else if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) {
                 e.preventDefault();
-                nextForm.submit();
+                if (nextForm.requestSubmit) {
+                    nextForm.requestSubmit(nextBtn);
+                } else {
+                    nextBtn.click();
+                }
             }
         });
     });

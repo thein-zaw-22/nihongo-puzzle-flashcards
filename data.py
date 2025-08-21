@@ -1,5 +1,8 @@
 """
-Data sets for Japanese learning puzzles and flashcards
+Data sets for Japanese learning puzzles and flashcards.
+
+FLASHCARDS are normalized as dicts with 'front' and 'back' keys to
+match template usage and keep structure consistent across the app.
 """
 
 # Puzzle data with proper structure matching app.py
@@ -36,16 +39,16 @@ PUZZLES = [
     }
 ]
 
-# Flashcard data: each card is a tuple of (front_text, back_text)
+# Flashcard data: each card is a dict with front/back text
 FLASHCARDS = [
-    ("私 (わたし)", "I/me"),
-    ("ありがとう", "Thank you"),
-    ("猫 (ねこ)", "Cat"),
-    ("おはよう", "Good morning"),
-    ("水 (みず)", "Water"),
-    ("犬 (いぬ)", "Dog"),
-    ("本 (ほん)", "Book"),
-    ("日本 (にほん)", "Japan"),
-    ("食べる (たべる)", "To eat"),
-    ("飲む (のむ)", "To drink")
+    {"front": "私 (わたし)", "back": "I/me"},
+    {"front": "ありがとう", "back": "Thank you"},
+    {"front": "猫 (ねこ)", "back": "Cat"},
+    {"front": "おはよう", "back": "Good morning"},
+    {"front": "水 (みず)", "back": "Water"},
+    {"front": "犬 (いぬ)", "back": "Dog"},
+    {"front": "本 (ほん)", "back": "Book"},
+    {"front": "日本 (にほん)", "back": "Japan"},
+    {"front": "食べる (たべる)", "back": "To eat"},
+    {"front": "飲む (のむ)", "back": "To drink"}
 ]

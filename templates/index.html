@@ -12,6 +12,9 @@
     {{ nav_menu('puzzle') }}
     <div class="container">
         <h1>Japanese Puzzle Game</h1>
+        {% if review_mode %}
+        <div class="mode-chip" title="You are reviewing incorrect answers">Review Mode</div>
+        {% endif %}
         <!-- Progress information -->
         <div class="progress-info">
             <div class="position-text">Question {{ progress.position }} of {{ progress.total }}</div>
@@ -51,27 +54,31 @@
                 <div class="action-buttons">
                     {% if result %}
                         {% if is_last_puzzle or all_completed %}
-                            <button class="start-over-btn" name="reset" value="1" type="submit">
-                                🎉 Start Over 🎉
-                            </button>
-                            <div class="completion-message">Congratulations! You completed all puzzles!</div>
+                            {% if review_mode %}
+                                <button class="btn-secondary" name="exit_review" value="1" type="submit">Exit Review</button>
+                            {% else %}
+                                {% if incorrect_count > 0 %}
+                                    <button class="btn-secondary" name="review" value="1" type="submit">Review Incorrect ({{ incorrect_count }})</button>
+                                {% endif %}
+                                <button class="start-over-btn" name="reset" value="1" type="submit">🎉 Start Over 🎉</button>
+                                <div class="completion-message">Congratulations! You completed all puzzles!</div>
+                            {% endif %}
                         {% else %}
-                            <button class="next-btn" name="next" value="1" type="submit">
-                                Next Puzzle →
-                            </button>
+                            <button class="next-btn" name="next" value="1" type="submit">Next Puzzle →</button>
                         {% endif %}
                     {% else %}
-                        <button class="btn-secondary" name="tryagain" value="1" type="submit">
-                            ↺ Try Again
-                        </button>
+                        <button class="btn-secondary" name="tryagain" value="1" type="submit">↺ Try Again</button>
                         {% if is_last_puzzle or all_completed %}
-                            <button class="start-over-btn" name="reset" value="1" type="submit">
-                                🎉 Start Over 🎉
-                            </button>
+                            {% if review_mode %}
+                                <button class="btn-secondary" name="exit_review" value="1" type="submit">Exit Review</button>
+                            {% else %}
+                                {% if incorrect_count > 0 %}
+                                    <button class="btn-secondary" name="review" value="1" type="submit">Review Incorrect ({{ incorrect_count }})</button>
+                                {% endif %}
+                                <button class="start-over-btn" name="reset" value="1" type="submit">🎉 Start Over 🎉</button>
+                            {% endif %}
                         {% elif not is_last_puzzle %}
-                            <button class="btn-secondary skip" name="next" value="1" type="submit">
-                                Skip →
-                            </button>
+                            <button class="btn-secondary skip" name="next" value="1" type="submit">Skip →</button>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -110,4 +117,3 @@
     </script>
 </body>
 </html>
-

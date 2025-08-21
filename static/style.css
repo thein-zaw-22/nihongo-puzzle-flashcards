@@ -130,6 +130,18 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Mode chip */
+.mode-chip {
+    display: inline-block;
+    margin: 0.25rem 0 0.75rem 0;
+    padding: 4px 10px;
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
 /* Progress information */
 .progress-info {
     margin-bottom: 2rem;
@@ -513,6 +525,33 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
 }
+
+/* Flashcard toolbar */
+.flashcard-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 12px 0;
+}
+.btn-toggle {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #3a7bd5;
+    background: #f8fbff;
+    color: #3a7bd5;
+    cursor: pointer;
+}
+.btn-toggle:hover { background: #3a7bd5; color: #fff; }
+.btn-ghost {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #b0bec5;
+    background: transparent;
+    color: #2d3a4b;
+    cursor: pointer;
+}
+.btn-ghost[disabled] { opacity: 0.5; cursor: not-allowed; }
 
 .reset-container {
     margin: 20px 0;
