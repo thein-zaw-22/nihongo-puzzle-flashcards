@@ -12,3 +12,35 @@ export const FLASHCARDS = [
   { front: '飲む (のむ)', back: 'To drink' },
 ];
 
+export const PUZZLES = [
+  {
+    id: 1,
+    question: "What is the meaning of '水' (mizu)?",
+    choices: ['Fire', 'Water', 'Tree', 'Mountain'],
+    answer: 1,
+  },
+  {
+    id: 2,
+    question: "What is the hiragana for 'neko' (cat)?",
+    choices: ['ねこ', 'いぬ', 'さる', 'とり'],
+    answer: 0,
+  },
+  {
+    id: 3,
+    question: "Which kanji means 'tree'?",
+    choices: ['山', '水', '木', '火'],
+    answer: 2,
+  },
+  {
+    id: 4,
+    question: "What is the romaji for 'ありがとう'?",
+    choices: ['arigatou', 'konnichiwa', 'sayonara', 'ohayou'],
+    answer: 0,
+  },
+  {
+    id: 5,
+    question: "What is the meaning of '火' (hi)?",
+    choices: ['Water', 'Tree', 'Fire', 'Earth'],
+    answer: 2,
+  },
+];
