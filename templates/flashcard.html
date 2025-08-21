@@ -13,12 +13,14 @@
     <div class="container">
         <h1>Japanese Flashcards</h1>
         <div class="flashcard-toolbar">
-            <form method="post" style="display:inline;">
-                <button class="btn-toggle" name="shuffle_toggle" value="1" type="submit">
-                    {% if shuffle %}Shuffle: On{% else %}Shuffle: Off{% endif %}
+            <form method="post" style="display:inline; margin:0;">
+                <button class="btn-toggle {% if shuffle %}is-on{% endif %}" name="shuffle_toggle" value="1" type="submit" aria-pressed="{{ 'true' if shuffle else 'false' }}">
+                    <span class="toggle-dot" aria-hidden="true"></span>
+                    <span class="toggle-label">Shuffle</span>
+                    <span class="state-text">{% if shuffle %}On{% else %}Off{% endif %}</span>
                 </button>
             </form>
-            <form method="post" style="display:inline;">
+            <form method="post" style="display:inline; margin:0;">
                 <button class="btn-ghost" name="reshuffle" value="1" type="submit" {% if not shuffle %}disabled{% endif %}>
                     Reshuffle
                 </button>
